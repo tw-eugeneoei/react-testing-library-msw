@@ -6,7 +6,7 @@ A simple example on testing React applications using Testing Library and Mock Se
 
 Intercepts network requests made by FE app. Mock different responses made to API endpoints to account for different scenarios that FE app needs to account for. This includes, not found, server error, different responses for /posts where API returns empty array or an array of posts.
 
-Easier to mock responses as compared to mocking a component's dependencies.
+Easier to mock API responses as compared to mocking a component's dependencies.
 
 # Getting Started
 
@@ -16,6 +16,17 @@ Easier to mock responses as compared to mocking a component's dependencies.
 - `npm run test:report` to view test coverage
 
 # Notes
+
+### What to avoid with Testing Library?
+
+> <br>
+> Testing Library encourages you to avoid testing implementation details like the internals of a component you're testing (though it's still possible). The Guiding Principles of this library emphasize a focus on tests that closely resemble how your web pages are interacted by the users. <br><br>
+> 
+> 1. Internal state of a component 
+> 2. Internal methods of a component
+> 3. Lifecycle methods of a component
+> 4. Child components
+> <br>
 
 ### Accessing elements in the DOM
 
@@ -30,7 +41,7 @@ Syntax: `[command][single element or multiple elements][query type]`.
   - `By`: single element
   - `AllBy`: multiple elements
 
-- Query type
+- Query type (in order of priority)
   - `Role`: based on accessibility tree
   - `LabelText`: `<label>` for form fields such as `<select>`, `<input>`
   - `PlaceholderText`: last resort since every form field should have an accompanying label
