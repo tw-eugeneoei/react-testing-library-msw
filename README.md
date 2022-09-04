@@ -1,11 +1,19 @@
 # Testing React App with Testing Library and Mock Service Worker
 
-TODO
+A simple example on testing React applications using Testing Library and Mock Service Worker.
+
+# Why [Mock Service Worker](https://mswjs.io/)?
+
+Intercepts network requests made by FE app. Mock different responses made to API endpoints to account for different scenarios that FE app needs to account for. This includes, not found, server error, different responses for /posts where API returns empty array or an array of posts.
+
+Easier to mock responses as compared to mocking a component's dependencies.
 
 # Getting Started
 
-TODO
-
+- `npm i`
+- `npm run start:json-server` spins up a json server to handle API calls for application
+- `npm run test:coverage` to watch test files and view coverage
+- `npm run test:report` to view test coverage
 
 # Notes
 
@@ -32,6 +40,23 @@ Syntax: `[command][single element or multiple elements][query type]`.
   - `Title`: not consistently read by screenreaders
   - `TestId` LAST LAST resort by adding the attribute “data-testid” to element
 
+### Accessing `<input type="password">` element
+
+Since password input field is of `<input type="password">`, the password field cannot be accessed through the role `textbox`. Therefore, to access the password input field and interact with it in Testing Library, access it through `LabelText` instead:
+
+```ts
+const passwordInput = screen.getByLabelText(/password/i);
+userEvent.type(passwordInput, "password1");
+```
+
 # Articles & References
 
-TODO
+### Accessibility
+- [What do we recommend people do for elements that have no implicit role (like input[type=password])](https://github.com/testing-library/dom-testing-library/issues/567)
+
+### Testing Library
+- [Common mistakes with React Testing Library](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
+- [Fix the "not wrapped in act(...)" warning](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning)
+
+### MSW
+- [Pause MSW response](https://stackoverflow.com/questions/71182668/how-to-pause-the-mock-service-worker-for-testing-the-intermediate-state-in-reac)
