@@ -3,6 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@emotion/react": "^11.10.4",
+        "@emotion/styled": "^11.10.4",
+        "@mui/material": "^5.10.3",
         "@types/node": "^16.11.56",
         "@types/react": "^18.0.18",
         "@types/react-dom": "^18.0.6",
