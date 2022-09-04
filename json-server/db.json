@@ -1,0 +1,30 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "auth": {
+        "firstName": "Jennie",
+        "lastName": "Nichols",
+        "email": "jennie.nichols@example.com"
+    },
+    "users": [
+        {
+            "email": "jennie.nichols@example.com",
+            "password": "$2a$10$/McMSTzS5sIsAZGGAQJCJemWQtsJrbAk2hIZmMZIxH8ATLaA27nZi",
+            "firstName": "Jennie",
+            "lastName": "Nichols",
+            "id": 1
+        }
+    ]
+}
