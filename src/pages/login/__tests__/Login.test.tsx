@@ -55,15 +55,14 @@ test("should show required error message for respective form fields when form is
 });
 
 test("should show spinner when form is submitted with valid field values", async () => {
-    // because implementation runs user initialisation process on load
-    // therefore overwrite msw's /auth route for initialisation process to fail
-    // so login page can render
+    // because there is a user initialisation process,
+    // we overwrite /auth endpoint so that user gets router to /login
     server.use(
         rest.get(`${process.env.REACT_APP_API}/auth`, (req, res, ctx) => {
             return res(
                 ctx.status(400),
                 ctx.json({
-                    message: "Session has expired."
+                    message: "Session has expired.",
                 })
             );
         })
@@ -92,25 +91,26 @@ test("should route user to home page when login is successful", async () => {
     userEvent.type(passwordInput, "jennie.nichols@example.com");
     userEvent.click(loginButton);
 
+    // since UI design is such that navbar exist only when user is logged in,
+    // assertion is based on a reliable landmark to avoid brittle tests
     const navbar = await screen.findByRole("navigation");
     expect(navbar).toBeInTheDocument();
 });
 
 test("should show error message when login is not successful", async () => {
     server.use(
+        // because there is a user initialisation process,
+        // we overwrite /auth endpoint so that user gets router to /login
         rest.get(`${process.env.REACT_APP_API}/auth`, (req, res, ctx) => {
             return res(
                 ctx.status(400),
                 ctx.json({
-                    message: "Session has expired."
+                    message: "Session has expired.",
                 })
             );
         }),
         rest.post(`${process.env.REACT_APP_API}/login`, (req, res, ctx) => {
-            return res(
-                ctx.status(400),
-                ctx.text("Invalid email or password.")
-            );
+            return res(ctx.status(400), ctx.text("Invalid email or password."));
         })
     );
     render(<LoginComponentWithWrapper />);
