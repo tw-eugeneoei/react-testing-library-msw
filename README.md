@@ -8,6 +8,8 @@ Intercepts network requests made by FE app. Mock different responses made to API
 
 Easier to mock API responses as compared to mocking a component's dependencies.
 
+In each individual test, API responses can be overwritten. This allows us to test unhappy paths that we can expect from our actual API.
+
 # Getting Started
 
 - `npm i`
@@ -41,7 +43,7 @@ Syntax: `[command][single element or multiple elements][query type]`.
   - `By`: single element
   - `AllBy`: multiple elements
 
-- Query type (in order of priority)
+- Query type (in order of **priority**)
   - `Role`: based on accessibility tree
   - `LabelText`: `<label>` for form fields such as `<select>`, `<input>`
   - `PlaceholderText`: last resort since every form field should have an accompanying label
