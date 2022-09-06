@@ -13,8 +13,8 @@ const useLogin = (): IUseLoginResponse => {
     const [loginError, setLoginError] = useState<string | undefined>(undefined);
 
     const login = async (email: string, password: string) => {
-        setIsLoginLoading(true);
         try {
+            setIsLoginLoading(true);
             const response = await axios.post(
                 `${process.env.REACT_APP_API}/login`,
                 {

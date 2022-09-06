@@ -38,6 +38,8 @@ const Login = () => {
         return <Navigate replace to="/" />;
     }
 
+    console.log(errors)
+
     return (
         <Grid
             container
