@@ -2,7 +2,13 @@
 
 A simple example on testing React applications using Testing Library and Mock Service Worker.
 
-# Why [Mock Service Worker](https://mswjs.io/)?
+- React with custom hook and Context
+- Mock service worker
+- react-hook-form
+- React router
+- Testing Library
+
+# Why [Mock service worker](https://mswjs.io/)?
 
 Intercepts network requests made by FE app. Mock different responses made to API endpoints to account for different scenarios that FE app needs to account for. This includes, not found, server error, different responses for /posts where API returns empty array or an array of posts.
 
@@ -73,3 +79,7 @@ userEvent.type(passwordInput, "password1");
 
 ### MSW
 - [Pause MSW response](https://stackoverflow.com/questions/71182668/how-to-pause-the-mock-service-worker-for-testing-the-intermediate-state-in-reac)
+
+### Others
+
+- [Write tests. Not too many. Mostly integration.](https://kentcdodds.com/blog/write-tests)
