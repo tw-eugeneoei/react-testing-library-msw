@@ -15,6 +15,7 @@ import {
     Grid,
     Typography,
 } from "@mui/material";
+import { useState } from "react";
 
 const Login = () => {
     const {
@@ -24,10 +25,16 @@ const Login = () => {
         formState: { errors },
     } = useForm<ILoginForm>({
         resolver: yupResolver(loginSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        }
     });
 
     const { login, isLoginLoading, loginError } = useLogin();
     const { loggedInUser, updateUser } = useLoggedInUser();
+
+    const [, setCounter] = useState(0)
 
     const handleLogin = async (data: ILoginForm) => {
         const user = await login(data.email, data.password);
@@ -37,8 +44,6 @@ const Login = () => {
     if (loggedInUser) {
         return <Navigate replace to="/" />;
     }
-
-    console.log(errors)
 
     return (
         <Grid
@@ -69,7 +74,7 @@ const Login = () => {
                         marginBottom: 2
                     }}>{loginError}</Alert>
                 )}
-                <form onSubmit={handleSubmit(handleLogin)}>
+                <form onSubmit={handleSubmit(handleLogin)} name="login">
                     <Controller
                         render={({ field }) => (
                             <TextField
@@ -91,7 +96,7 @@ const Login = () => {
                         )}
                         name="email"
                         control={control}
-                        defaultValue = {''}
+                        // defaultValue = {''}
                     />
                     <Controller
                         render={({ field }) => (
@@ -110,7 +115,7 @@ const Login = () => {
                         )}
                         name="password"
                         control={control}
-                        defaultValue = {''}
+                        // defaultValue = {''}
                     />
                     <div className="mt-6">
                         {isLoginLoading ? (
@@ -121,6 +126,10 @@ const Login = () => {
                                 type="submit"
                                 fullWidth
                                 disableElevation
+                                onClick={() => {
+                                    // console.log('asdf')
+                                    setCounter(state => state + 1)
+                                }}
                                 sx={{
                                     marginTop: 3,
                                     fontSize: 16,

@@ -51,19 +51,18 @@ test("login button should be enabled on load", async () => {
     expect(loginButton).toBeEnabled();
 });
 
-test.only("should show required error message for respective form fields when form is submitted without any values", async () => {
+test("should show required error message for respective form fields when form is submitted without any values", async () => {
     render(<LoginComponentWithWrapper />);
     const loginButton = await screen.findByRole("button", { name: /login/i });
     userEvent.click(loginButton);
 
-    // await waitFor(() => {
-    //     const loginErrorMessage = screen.getByText(/Email is required/i);
-    //     expect(loginErrorMessage).toBeInTheDocument();
-    // })
-
+    const emailErrorMessage = await screen.findByText(/Email is required/i);
     const passwordErrorMessage = await screen.findByText(
         /Password is required/i
     );
+
+    // screen.debug()
+    expect(emailErrorMessage).toBeInTheDocument();
     expect(passwordErrorMessage).toBeInTheDocument();
 });
 
